@@ -37,10 +37,12 @@ function onCellClick(e) {
 
   e.target.innerText = currentPlayer.sign;
 
+  chosenCells.push(chosenCellNumber);
+  if (chosenCells.length === 9) fireToastAndRestart(null, true);
+
   pushToPlayerSelection(currentPlayer, chosenCellNumber);
 
   isFirstPlayer = !isFirstPlayer;
-  chosenCells.push(chosenCellNumber);
 }
 
 function pushToPlayerSelection({ playerName, selected }, chosenCell) {
@@ -53,25 +55,41 @@ function isWinner(selected, playerName) {
   return combinations.some(
     combinationsItem =>
       combinationsItem.every(item => selected.includes(item)) &&
-      fireToastAndRestart(playerName)
+      fireToastAndRestart(playerName, false)
   );
 }
 
-function fireToastAndRestart(playerName) {
+function fireToastAndRestart(playerName, isDraw) {
   const DURATION = 2000;
-  Toastify({
-    text: `${playerName} won!`,
-    duration: DURATION,
-    destination: 'https://github.com/apvarun/toastify-js',
-    newWindow: true,
-    close: true,
-    gravity: 'top',
-    position: 'left',
-    stopOnFocus: true,
-    style: {
-      background: 'linear-gradient(to right, #00b09b, #96c93d)',
-    },
-  }).showToast();
+  if (!isDraw)
+    Toastify({
+      text: `${playerName} won!`,
+      duration: DURATION,
+      destination: 'https://github.com/apvarun/toastify-js',
+      newWindow: true,
+      close: true,
+      gravity: 'top',
+      position: 'left',
+      stopOnFocus: true,
+      style: {
+        background: 'linear-gradient(to right, #00b09b, #96c93d)',
+      },
+    }).showToast();
+  else {
+    Toastify({
+      text: 'Draw!',
+      duration: DURATION,
+      destination: 'https://github.com/apvarun/toastify-js',
+      newWindow: true,
+      close: true,
+      gravity: 'top',
+      position: 'left',
+      stopOnFocus: true,
+      style: {
+        background: 'linear-gradient(to right, #df1b1b, #ba3030)',
+      },
+    }).showToast();
+  }
   setTimeout(restart, DURATION);
 }
 
