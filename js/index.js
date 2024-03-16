@@ -38,7 +38,9 @@ function onCellClick(e) {
   e.target.innerText = currentPlayer.sign;
 
   chosenCells.push(chosenCellNumber);
-  if (chosenCells.length === 9) fireToastAndRestart(null, true);
+  if (chosenCells.length === 9) {
+    return fireToastAndRestart(null, true);
+  }
 
   pushToPlayerSelection(currentPlayer, chosenCellNumber);
 
