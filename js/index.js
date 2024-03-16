@@ -104,6 +104,7 @@ function setAppMarkup(numberOfCells) {
 }
 
 function restart() {
+  isFirstPlayer = true;
   chosenCells = [];
   firstPlayer.selected = [];
   secondPlayer.selected = [];
