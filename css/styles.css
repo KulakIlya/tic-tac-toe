@@ -1,0 +1,30 @@
+:root {
+  --border: 1px solid black;
+}
+
+.container {
+  font-family: 'Madimi One', sans-serif;
+
+  margin-top: 100px;
+  display: flex;
+
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+#app {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  border-top: var(--border);
+  border-left: var(--border);
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 70px;
+  border-bottom: var(--border);
+  border-right: var(--border);
+}
